@@ -1,10 +1,6 @@
 // ----------------- main routine ------  
 import * as THREE from "three/webgpu";
 import { lineTo,dot,sphere,sphereVec } from './initGrModelGM.js' 
-//export function Cell.getv(c) 
-
-//let cell = new Array()
-//for (let c=0; c<10; c++) { cell[c] = new Cell(c) };
 
    export class Cell {			// ****** Cell Object ******
     constructor(cellNo) { this.cellNo = cellNo }
@@ -181,7 +177,7 @@ import { lineTo,dot,sphere,sphereVec } from './initGrModelGM.js'
 		};
 	 }					// *** end of vnods ***
 	 	
-	getoutw() {
+	getoutw() {		// output of nod1 
 	   var imt,mx,my,nx,ny, dm,dmn,dmkk,dmkm,dmx,dmy, fw, hsl  
 		this.outw = 0
 		for ( let m=0; m<this.nod1v.length; m++ ) { this.nod1w[m]=0 }
@@ -230,6 +226,4 @@ import { lineTo,dot,sphere,sphereVec } from './initGrModelGM.js'
 }			// ****** End of Cell Object ******
 
 let cell = new Array()
-for (let c=0; c<11; c++) { cell[c] = new Cell(c) };
 export { cell };
-//export function getvv() { Cell.getv( Cell.cellNo ) }

@@ -8,7 +8,7 @@ function getRandom0_9() {
   for ( var k=0; k<10; k++ ) {
    do { drow = Math.floor( mt.nextInt(0,10000) ); Num = ldata[drow]; }
    while ( Num != k );
-   dr09[k] = drow;      //console.log(dr09)   ---- ok ----------
+   dr09[k] = drow;
   }; 
 }
 //
@@ -39,7 +39,7 @@ function load09(k) {
  	 for(var i=0; i<28; i++) { img[k][i] = new Array()
       		for(var j=0; j<28; j++) {  img[k][i][j] = Math.floor(idata[ dr09[k] ][j*28 + i]);
       		} ; 
-  	 };       //console.log(img)    ---- ok ----------
+  	 }; 
 }	 
 	 
 //---------------- read bin file ( https://qiita.com/kinmojr/items/4c7a003aa19f8dcf4c4f ) ---------------
@@ -69,7 +69,7 @@ export function handleImageFiles(files) {
 	    for(var i=0; i<number_of_images; i++) {  idata[i] = [];
 	      for(var j=0; j<dlen; j++) {  idata[i][j] = dataView.getUint8(16+i*dlen+j);
 		      if (idata[i][j]==255) { idata[i][j]=254; } }
-	    };    //console.log(idata)   	// -------	ok  -------
+	    }; 
       getRandom0_9();
       for( var k=0; k<10; k++) { load09(k);  }; 
     }
@@ -79,7 +79,6 @@ export var ldata = new Array();				// ***** Label data array *****
 export function handleLabelFiles(files) {
     if (window.FileReader) {   getAsText(files);	//getRandom0_9()
       } else {			 alert('FileReader are not supported in this browser.'); }
-	//getRandom0_9(); //document.getElementById("btn0").disabled = false;
  }
 
     function getAsText(fileToRead) { 
@@ -101,19 +100,3 @@ export function handleLabelFiles(files) {
     function errorHandler(evt) {
       if(evt.target.error.name == "NotReadableError") { alert("Canno't read file !"); }
     }
-/*
-var ld=new Array
-export var ldata = [];			// ***** Label data array *****
- export function handleLabelFiles(files) { 
-  const reader = new FileReader();
-   reader.onload = () => {
-    const arrayBuffer = reader.result; 
-    const dataView  = new Uint8Array(arrayBuffer); // Wrap in a typed array to manipulate
-    dataView.slice(8,dataView.length-8);    //console.log(dataView)
-    ldata = dataView.slice(8);              console.log(ldata,ld.length)
-      //for(var i=0; i<ld.length; i++) {  ldata[i]=ld[i] } //dataView.getInt8(8+i); }
-   }
-  reader.readAsArrayBuffer(files, "UTF-8");  
-  console.log(dataView)
- }
-  */
